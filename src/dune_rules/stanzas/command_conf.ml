@@ -5,6 +5,7 @@ type t =
   { deps : Dep_conf.t Bindings.t
   ; name : Loc.t * string
   ; loc : Loc.t
+  ; action : Loc.t * Dune_lang.Action.t
   }
 
 include Stanza.Make (struct
@@ -19,6 +20,7 @@ let decode =
      String_with_vars.add_user_vars_to_decoding_env
        (Bindings.var_names deps)
        (let+ loc = loc
-        and+ name = field "name" (located string) in
-        { name; loc; deps }))
+        and+ name = field "name" (located string)
+        and+ action = field "action" (located Dune_lang.Action.decode_dune_file) in
+        { name; loc; deps; action }))
 ;;
