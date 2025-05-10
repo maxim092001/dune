@@ -137,6 +137,11 @@ let stanzas : constructors =
       , let+ () = Dune_lang.Syntax.since Stanza.syntax (3, 14)
         and+ include_ = Include.decode in
         [ Dynamic_include.make_stanza include_ ] )
+      (* TODO 3.19 *)
+    ; ( "command"
+      , let+ () = Dune_lang.Syntax.since Stanza.syntax (3, 18)
+        and+ t = Command_conf.decode in
+        [ Command_conf.make_stanza t ] )
     ]
   ]
   |> List.concat

@@ -179,6 +179,9 @@ let add_alias_action t alias ~dir ~loc action =
   Rules.Produce.Alias.add_action alias ~loc build
 ;;
 
+let add_command_action t command ~dir ~loc action =
+  let build = extend
+
 let resolve_program_memo t ~dir ?where ?hint ~loc bin =
   let* artifacts = artifacts_host t ~dir in
   Artifacts.binary ?hint ?where ~loc artifacts bin
